@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
-  ChatScreen({super.key});
+ const ChatScreen({super.key});
   static String id = 'ChatScreen';
 
   @override
