@@ -2,12 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
-part 'login_state.dart';
+part 'auth_state.dart';
 
-class LoginCubit extends Cubit<LoginState> {
-  LoginCubit() : super(LoginInitial());
+class AuthCubit extends Cubit<AuthState> {
+  AuthCubit() : super(AuthInitial());
 
-  Future<void> loginUser({
+   Future<void> loginUser({
     required String email,
     required String password,
   }) async {
@@ -26,6 +26,28 @@ class LoginCubit extends Cubit<LoginState> {
       }
     } catch (e) {
       emit(LoginFailure(errMessage: 'Somthing went wrong'));
+    }
+  }
+
+
+    Future<void> registerUser({
+    required String email,
+    required String password,
+  }) async {
+    emit(RegisterSuccess());
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (ex) {
+      if (ex.code == "weak-password") {
+        emit(RegisterFailure(errMessage: 'Weak password'));
+      } else if (ex.code == "email-already-in-use") {
+        emit(RegisterFailure(errMessage: 'email already is used'));
+      }
+    } catch (e) {
+      emit(RegisterFailure(errMessage: 'Somthing went wrong'));
     }
   }
 }

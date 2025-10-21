@@ -1,8 +1,8 @@
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/screens/chat_screen.dart';
+import 'package:chat_app/screens/cubits/auth_cubit/auth_cubit.dart';
 import 'package:chat_app/screens/cubits/chat_cubit/chat_cubit.dart';
-import 'package:chat_app/screens/cubits/register_cubit/register_cubit.dart';
 import 'package:chat_app/screens/widgets/field.dart';
 import 'package:chat_app/screens/widgets/main_button.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class RegisterScreen extends StatelessWidget {
     bool isLoading = false;
 
     GlobalKey<FormState> formKey = GlobalKey();
-    return BlocConsumer<RegisterCubit, RegisterState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is RegisterLoading) {
           isLoading = true;
@@ -89,7 +89,7 @@ class RegisterScreen extends StatelessWidget {
                       buttonText: "Sign Up",
                       onPress: () async {
                         if (formKey.currentState!.validate()) {
-                          BlocProvider.of<RegisterCubit>(
+                          BlocProvider.of<AuthCubit>(
                             context,
                           ).registerUser(email: email!, password: password!);
                         }
