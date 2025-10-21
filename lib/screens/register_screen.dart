@@ -1,6 +1,7 @@
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/screens/chat_screen.dart';
+import 'package:chat_app/screens/cubits/chat_cubit/chat_cubit.dart';
 import 'package:chat_app/screens/cubits/register_cubit/register_cubit.dart';
 import 'package:chat_app/screens/widgets/field.dart';
 import 'package:chat_app/screens/widgets/main_button.dart';
@@ -26,6 +27,7 @@ class RegisterScreen extends StatelessWidget {
         if (state is RegisterLoading) {
           isLoading = true;
         } else if (state is RegisterSuccess) {
+          BlocProvider.of<ChatCubit>(context).getMessage();
           Navigator.pushNamed(context, ChatScreen.id);
           isLoading = false;
         } else if (state is RegisterFailure) {
