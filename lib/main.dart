@@ -1,3 +1,4 @@
+import 'package:chat_app/screens/blocs/auth_cubit/auth_bloc.dart';
 import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/screens/cubits/auth_cubit/auth_cubit.dart';
 import 'package:chat_app/screens/cubits/chat_cubit/chat_cubit.dart';
@@ -22,7 +23,7 @@ class ChatApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         // BlocProvider(create: (context) => LoginCubit()),
-        // BlocProvider(create: (context) => RegisterCubit()),
+        BlocProvider(create: (context) => AuthBloc()),
                 BlocProvider(create: (context) => ChatCubit()),
                  BlocProvider(create: (context) => AuthCubit()),
 

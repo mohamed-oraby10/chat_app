@@ -1,7 +1,7 @@
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
+import 'package:chat_app/screens/blocs/auth_cubit/auth_bloc.dart';
 import 'package:chat_app/screens/chat_screen.dart';
-import 'package:chat_app/screens/cubits/auth_cubit/auth_cubit.dart';
 import 'package:chat_app/screens/cubits/chat_cubit/chat_cubit.dart';
 import 'package:chat_app/screens/register_screen.dart';
 import 'package:chat_app/screens/widgets/main_button.dart';
@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
     String? password;
     bool isLoading = false;
     GlobalKey<FormState> formKey = GlobalKey();
-    return BlocConsumer<AuthCubit, AuthState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is LoginLoading) {
           isLoading = true;
@@ -87,9 +87,9 @@ class LoginScreen extends StatelessWidget {
                       buttonText: "Log In",
                       onPress: () async {
                         if (formKey.currentState!.validate()) {
-                          BlocProvider.of<AuthCubit>(
+                          BlocProvider.of<AuthBloc>(
                             context,
-                          ).loginUser(email: email!, password: password!);
+                          ).add(LoginEvent(email: email!, password: password!));
                         }
                       },
                     ),
