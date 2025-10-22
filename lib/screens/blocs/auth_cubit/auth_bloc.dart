@@ -27,13 +27,24 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         } catch (e) {
           emit(LoginFailure(errMessage: 'Somthing went wrong'));
         }
+      } else if (event is RegisterEvent) {
+        emit(RegisterLoading());
+        try {
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: event.email,
+            password: event.password,
+          );
+          emit(RegisterSuccess());
+        } on FirebaseAuthException catch (ex) {
+          if (ex.code == "weak-password") {
+            emit(RegisterFailure(errMessage: 'Weak password'));
+          } else if (ex.code == "email-already-in-use") {
+            emit(RegisterFailure(errMessage: 'email already is used'));
+          }
+        } catch (e) {
+          emit(RegisterFailure(errMessage: 'Somthing went wrong'));
+        }
       }
     });
-  }
-
-  @override
-  void onTransition(Transition<AuthEvent, AuthState> transition) {
-    super.onTransition(transition);
-    print(transition);
   }
 }
