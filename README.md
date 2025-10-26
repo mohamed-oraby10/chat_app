@@ -13,7 +13,6 @@ A real-time chat application built with Flutter and Firebase, featuring authenti
 
 ## 📱 Screenshots
 
-*Add your app screenshots here*
 
 ## 🚀 Getting Started
 
