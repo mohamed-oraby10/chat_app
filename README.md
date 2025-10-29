@@ -14,6 +14,30 @@ A real-time chat application built with Flutter and Firebase, featuring authenti
 ## 📱 Screenshots
 
 
+## 🔑 Login Screen
+
+<p align="center">
+  <img src="assets/screenshots/Screenshot_1761764916.png" alt="Login Screen" width="30%" style="margin-right: 10px;">
+    <img src="assets/screenshots/Screenshot_1761764921.png" alt="Login Screen" width="30%" style="margin-right: 10px;">
+</p>
+
+---
+
+## 🧾 Register Screen
+<p align="center">
+  <img src="assets/screenshots/Screenshot_1761764926.png" alt="Register Screen" width="30%" style="margin-right: 10px;">
+</p>
+
+---
+
+## 🏠 Home Screen
+
+<p align="center">
+  <img src="assets/screenshots/Screenshot_1761765019.png" alt="Home Screen" width="30%" style="margin-right: 10px;">
+</p>
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
